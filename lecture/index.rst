@@ -2,52 +2,50 @@ PYTHON INIT
 ===========
 
 1. Введение в Python
-   * Свойства языка
-   * Версии
-   * Запуск - Интерактивный режим
-   * PEP 0001 (Python Enhancement Proposal)
-   * PEP 20 The Zen of Python http://www.russianlutheran.org/python/zen/zen.html
-
+    * Свойства языка
+    * Версии
+    * Запуск - Интерактивный режим
+    * PEP 0001 (Python Enhancement Proposal)
+    * PEP 20 `The Zen of Python <http://www.russianlutheran.org/python/zen/zen.html>`_
 #. Типы данных
-   * Логический
-   * Числа (Numbers):
-     * int
-     * long
-     * float
-     * complex
-   * Строка (String)
-   * Список (*List*)
-   * Кортеж (Tuple)
-   * Множетсва (Set)
-   * Словарь (*Dictionary*)
-   * NoneType
-   * Преобразование типов данных
+    * Логический
+    * Числа (Numbers)
+        * int
+        * long
+        * float
+        * complex
+    * Строка (String)
+    * Список (*List*)
+    * Кортеж (Tuple)
+    * Множетсва (Set)
+    * Словарь (*Dictionary*)
+    * NoneType
+    * Преобразование типов данных
 
 #. Инструкции и синтаксис
-   * PEP 0008
-   * Присвоение объктов(множественное)
-   * Модули
-   * Функции
-https://github.com/inhumanitas/python_course.git
-#. Классы и ООП
-   * ООП
-     * class (old-style\new style)
-     * переменная класса (инкапсуляция)
-     * метод (перегрузка)
-     * наследование
-     * meta
+    * PEP 0008
+    * Присвоение объктов(множественное)
+    * Модули
+    * Функции
 
-   * property
-   * итератор
-   * генератор
+#. Классы и ООП
+    * ООП
+        * class (old-style\new style)
+        * переменная класса (инкапсуляция)
+        * метод (перегрузка)
+        * наследование
+        * meta
+    * property
+    * итератор
+    * генератор
 
 #. Исключения
 
 #. Окружение
-   * pypi
-   * pip
-   * venv
+    * pypi
+    * pip
+    * venv
 
 #. Использование Openstack
-   * requests
-   * client (nova\keystone...)
+    * requests
+    * client (nova / keystone...)
