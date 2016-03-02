@@ -28,7 +28,7 @@ PYTHON INIT
    * Присвоение объктов(множественное)
    * Модули
    * Функции
-
+https://github.com/inhumanitas/python_course.git
 #. Классы и ООП
    * ООП
      * class (old-style\new style)
