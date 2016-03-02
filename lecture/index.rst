@@ -27,19 +27,30 @@ PYTHON INIT
     * Присвоение объктов(множественное)
     * Модули
     * Функции
+    * magic methods
 
 #. Классы и ООП
     * ООП
-        * class (old-style\new style)
+        * class (old-style/new style)
         * переменная класса (инкапсуляция)
         * метод (перегрузка)
         * наследование
         * meta
+        * operators
+
     * property
+    * контекстный менеджер
     * итератор
     * генератор
 
 #. Исключения
+
+#. std libs
+    * functools
+    * itertools
+    * collections
+
+#. debugger
 
 #. Окружение
     * pypi
