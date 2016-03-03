@@ -36,6 +36,7 @@ PYTHON INIT
         * метод (перегрузка)
         * наследование
         * meta
+        * property
         * operators
 
     * property
