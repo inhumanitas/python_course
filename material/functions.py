@@ -107,3 +107,8 @@ assert summator(1, *args, **kwargs) == sum([1, 3, 4, 5]), \
 # all together
 assert summator(1,  2, *args, **kwargs) == sum([1, 2, 3, 4, 5]), \
        "Kwargs passing have problems"
+
+
+summ = lambda x: x+1
+x = 3
+assert summ(x) == x+1, 'Lambda not worked'
