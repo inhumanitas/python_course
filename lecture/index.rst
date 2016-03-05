@@ -5,7 +5,7 @@ PYTHON INIT
     * Свойства языка
     * Версии
     * Запуск - Интерактивный режим
-    * PEP 0001 (Python Enhancement Proposal)
+    * PEP 0001 (Python Enhancement Proposal/ Предложения по развитию Python)
     * PEP 20 `The Zen of Python <http://www.russianlutheran.org/python/zen/zen.html>`_
 #. Типы данных
     * Логический
