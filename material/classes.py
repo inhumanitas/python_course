@@ -15,11 +15,21 @@ class OldStyle:
     Classic style class
     """
     var = None  # class variable
+    _var = None  # class protected variable
+    __var = None  # class private variable
 
     def __init__(self):
         self.var = 'OldStyle'  # instance variable
 
     def method1(self):
+        """Class method"""
+        return self.var
+
+    def _protected_method(self):
+        """Class method"""
+        return self.var
+
+    def __private_method(self):
         """Class method"""
         return self.var
 
@@ -34,10 +44,10 @@ class NewStyle(object):
         self.var = 'NewStyle'
 
 
-old1 = OldStyle()
+old1_instance = OldStyle()
 new1 = NewStyle()
 
-print 'OldStyle', type(OldStyle), dir(old1)
+print 'OldStyle', type(OldStyle), dir(old1_instance)
 print 'NewStyle', type(NewStyle), dir(new1)
 
 
@@ -49,7 +59,7 @@ class MultiInheritance(NewStyle, OldStyle):
 # resolving vars
 class Class1(object):  # Класс нового стиля
     var = u"Это значение в классических классах"
-#
+# #
 # class Class1:  # Классический класс
 #     var = u"Это значение в классических классах"
 
@@ -73,18 +83,19 @@ class A(object):
     pass
 
 
-a = A()
-assert not hasattr(a, 'var')
+a_instance = A()
+assert not hasattr(a_instance, 'var')
 
 
 A.var = 'A_var'
-assert hasattr(a, 'var')
+assert hasattr(a_instance, 'var')
 
 
+a_instance = A()
 def fn(self): pass
 A.fn = fn
-assert hasattr(a, 'fn')
-print fn, A.fn, a.fn
+assert hasattr(a_instance, 'fn')
+print fn, A.fn, a_instance.fn
 
 
 # ---------------------------------------------------------------------------
@@ -93,13 +104,21 @@ class BaseObject(object):
 
     def __new__(cls, *args, **kwargs):
         print 'creating object'
-        return super(BaseObject, cls).__new__(cls, *args, **kwargs)
+        cls_parents = super(BaseObject, cls).__new__(cls, *args, **kwargs)
+        return cls_parents
 
     def __init__(self):
+        self.var = 1
         print 'object initialized'
 
     def __del__(self):
         print 'object destroyed'
+
+# BaseObject.var
+b_obj = BaseObject()
+b_obj.var = 3
+b_obj2 = BaseObject()
+b_obj.var # 1
 
 
 class VM(BaseObject):
@@ -107,9 +126,10 @@ class VM(BaseObject):
     VM object
     Supported stop\start\pause
     """
-
+    name = None
     # TODO state can be separated from VM object
     _state = None  # current VM state
+
     # all available states
     __states = {
         'STOPPED': 0,
@@ -137,14 +157,16 @@ class VM(BaseObject):
 # instance
 vm1 = VM('test_ubuntu', 1)
 # method call
-vm1.start()
-assert vm1._state == 1
+vm1.name = 'test_ubuntu'
+
+vm1.pause()
+assert vm1._state == 2
 
 
 assert isinstance(vm1, BaseObject)
 
-s = 'abcdef'
-us = u'abcdef'
+s = 'abcdef'  # str
+us = u'abcdef' # unicode
 
 print 'isinstance(s, str), isinstance(s, unicode), isinstance(s, basestring)'
 print isinstance(s, str), isinstance(s, unicode), isinstance(s, basestring)
@@ -155,6 +177,7 @@ print isinstance(us, str), isinstance(us, unicode), isinstance(us, basestring)
 assert issubclass(VM, object)
 VM.__bases__
 VM.__class__, VM.__dict__
+vm2 = vm1.__class__('vm2', 2)
 
 # ---------------------------------------------------------------------------
 # classmethod, staticmethod
@@ -179,7 +202,7 @@ class Path(object):
 cur = Path.cwd()
 path = '///root//tmp/'
 norm_path = Path.normalize(path)
-# prefix_path = Path.append(path)
+prefix_path = Path.append(Path(), path)
 
 
 # ---------------------------------------------------------------------------
@@ -230,5 +253,5 @@ class AA(object):
     __metaclass__ = Ameta
 
 AA.foo()
-a = AA()
+a_instance = AA()
 # a.foo

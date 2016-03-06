@@ -5,12 +5,13 @@
 """
 
 
-def main():
+def main(count):
+    assert count > 0, "Count should be positive"
     print 'main'
 
 
 # assert raises AssertionError if first argument is not True
-assert True, "Error Message"
+assert 1 == 1, "Error Message"
 
 
 def simple_summator(first, second):
@@ -22,8 +23,20 @@ def simple_summator(first, second):
     return first + second
 
 # tests
-a = 1
+a = '1'
 assert simple_summator(a, a) == a + a, "Is not working"
+
+def simple_summator_with_mixed(first, second=0):
+    """Simple way to pass arguments
+    :param first: first value to sum default is 0
+    :param second: first value to sum default is 0
+    :return: sum for first + second
+    """
+    if not second:
+        second = first
+    return first + second
+
+assert simple_summator_with_mixed(1), 'Wrong call'
 
 
 def simple_summator_with_defaults(first=0, second=0):
@@ -39,6 +52,30 @@ def simple_summator_with_defaults(first=0, second=0):
 assert simple_summator_with_defaults() == 0, "Is not working"
 
 
+def simple_summator_with_mutable(first=0, second=[]):
+    """Simple way to pass arguments
+    :param first: first value to sum default is 0
+    :param second: first value to sum default is 0
+    :return: sum for first + second
+    """
+    second.append(1)
+    return second
+
+f = []
+s = [1]
+f.append(s)  # [[1]]
+s = f
+s.append(1)  # [[1], 1]
+
+my_list = [1, 2, 3]
+
+
+assert simple_summator_with_mutable(1, my_list) == [1,2,3,1], "Is not working"
+assert simple_summator_with_mutable(1, my_list) == [1,2,3,1,1], "Is not working"
+assert simple_summator_with_mutable() == [1], "Is not working"
+assert simple_summator_with_mutable() == [1, 1], "Is not working"
+
+
 def summator_args(*args):
     """Simple way to pass arguments
     :param args: list of variables
@@ -49,7 +86,6 @@ def summator_args(*args):
         summ += arg
     return summ
 
-
 # tests
 assert summator_args(1, 2, 3) == sum((1, 2, 3)), "Is not working"
 numbers = [1, 2, 3, 4, 5, 6]
@@ -58,14 +94,13 @@ assert summator_args(*numbers) == sum(numbers), "Args passing have problems"
 
 def summator_kwargs(**kwargs):
     """Simple way to pass arguments
-    :param kwargs:
+    :param kwargs: dict
     :return: sum for first + second
     """
     first = kwargs.get('first', 0)
     second = kwargs.get('second', 0)
 
     return first + second
-
 
 # tests
 assert summator_kwargs(first=1, second=2) == sum((1, 2)), "Is not working"
