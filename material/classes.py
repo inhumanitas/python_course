@@ -208,9 +208,22 @@ prefix_path = Path.append(Path(), path)
 # ---------------------------------------------------------------------------
 # property, show get, set methods!!!!
 
+class SomeObject(object):
+    var = None
+
+so_instance = SomeObject()
+so_instance.__dict__  #
+SomeObject.__dict__  # {'var': None, '__dict__': <attribute '__dict__' of 'SomeObject' objects>, '__module__': '__main__', '__weakref__': <attribute '__weakref__' of 'SomeObject' objects>, '__doc__': None}
+
+so_instance.var = 'set value'
+so_instance.__dict__  # {'var': 'set value'}
+so_instance.no_var  # AttributeError
+
+
 
 class StateMixin(object):
     _state = None  # current VM state
+
     # all available states
     __states = {
         'STOPPED': 0,
