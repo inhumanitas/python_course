@@ -118,7 +118,7 @@ class BaseObject(object):
 b_obj = BaseObject()
 b_obj.var = 3
 b_obj2 = BaseObject()
-b_obj.var # 1
+b_obj.var  # 1
 
 
 class VM(BaseObject):
@@ -206,6 +206,51 @@ prefix_path = Path.append(Path(), path)
 
 
 # ---------------------------------------------------------------------------
+class Magic(object):
+
+    def __getattribute__(self, name):
+        return super(Magic, self).__getattribute__(name)
+
+    def __getattr__(self, item):
+        """Invoked if the attribute wasn't found the usual ways. Eg Magic.x"""
+
+    def __getitem__(self, item):
+        """Act like dictionary. Eg Magic['x']"""
+
+    def __get__(self, instance, owner):
+        """Descriptor method """
+
+    def __repr__(self):
+        """The goal is to be unambiguous """
+        return super(Magic, self).__repr__()
+
+    def __str__(self):
+        """The goal is to be readable """
+        return super(Magic, self).__str__()
+
+    def __add__(self, other):
+        pass
+
+    def __cmp__(self, other):
+        pass
+
+    def __call__(self, *args, **kwargs):
+        pass
+
+
+class Point(object):
+    def __init__(self, x, y):
+        super(Point, self).__init__()
+        self.x, self.y = x, y
+
+    def __repr__(self):
+        return u"Point({x}, {y})".format(x=self.x, y=self.y)
+
+
+p = Point(3, 55)
+
+
+# ---------------------------------------------------------------------------
 # property, show get, set methods!!!!
 
 class SomeObject(object):
@@ -217,8 +262,26 @@ SomeObject.__dict__  # {'var': None, '__dict__': <attribute '__dict__' of 'SomeO
 
 so_instance.var = 'set value'
 so_instance.__dict__  # {'var': 'set value'}
-so_instance.no_var  # AttributeError
+# so_instance.no_var  # AttributeError
 
+
+class C(object):
+
+    def getx(self):
+        return self._x
+
+    def setx(self, value):
+        self._x = value
+
+    def delx(self):
+        del self._x
+
+    x = property(getx, setx, delx, "I'm the 'x' property.")
+
+
+c = C()
+c.x = 1
+c.__dict__  # {'_x': 1}
 
 
 class StateMixin(object):
@@ -249,9 +312,18 @@ nvm.state = 1
 # meta introduction
 isinstance(object, type)  # True
 
-class A(object): pass
 
-type('A', (object,), {})
+class A(object):
+    pass
+
+
+def class_creator():
+    class A(object):
+        pass
+    return A
+
+
+type('A', (object, ), {})
 
 
 # ---------------------------------------------------------------------------
@@ -267,4 +339,35 @@ class AA(object):
 
 AA.foo()
 a_instance = AA()
-# a.foo
+
+# a_instance.foo
+
+
+# ---------------------------------------------------------------------------
+# decorators
+
+import time
+
+def timer(func):
+    def tmp(*args, **kwargs):
+        t = time.time()
+        res = func(*args, **kwargs)
+        print "Время выполнения функции: %f" % (time.time()-t)
+        return res
+
+    return tmp
+
+
+@timer
+def dec_func(x, y):
+    return x + y
+
+dec_func(1, 2)  # Время выполнения функции: 0.0004
+
+
+def func(x, y):
+    return x + y
+
+
+timer(func)(1, 2)  # # Время выполнения функции: 0.0004
+# ---------------------------------------------------------------------------

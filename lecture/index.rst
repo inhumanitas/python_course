@@ -40,10 +40,17 @@ PYTHON INIT
         * property
         * operators
 
-    * property
     * контекстный менеджер
-    * итератор
     * генератор
+    * итератор
+
+#. Функции
+    * all
+    * any
+    * sorted
+    * map
+    * reduce
+    * filter
 
 #. Исключения
 
