@@ -250,6 +250,17 @@ class Point(object):
 p = Point(3, 55)
 
 
+class Ten(object):
+    def __getitem__(self, item):
+        if item < 10:
+            return 10 + item
+        raise IndexError()
+
+
+for i in Ten():
+    print i
+
+
 # ---------------------------------------------------------------------------
 # property, show get, set methods!!!!
 
