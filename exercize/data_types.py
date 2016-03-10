@@ -63,6 +63,7 @@ for i in range(n):
     for j in range(m):
         int_list[i].append(0)
 
+# Данис; попробуй comprehension
 
 #  5
 
@@ -72,8 +73,10 @@ for i in range(n):
 int_list = [1, 2, 3, 4, 5, 6, -1, -2, -3]
 max_element = None
 
-if int_list.__len__() > 0:
+if len(int_list) > 0:
     max_element = int_list[0]
+
+# max_element = None if len(int_list) > 0 else int_list[0]
 
 for i in int_list:
     if max_element < int_list[i]:
@@ -90,6 +93,7 @@ j = 3.0
 element_sum = 0.0
 for k in range(8):
     element_sum += (i+k)/(j+k)
+# Данис; попробуй использовать list comprehension
 
 #  7
 
@@ -97,11 +101,17 @@ for k in range(8):
     Для произвольной строки получить строку с уникальными символами
     на основе исходной
 """
-str_element = 'asw123dasd1234441asdwqqs dadwedq12312weqe45512w'
+str_element = 'asw123dasd123490441asdwqqs dadwedq12312weqe45512w'
 str1 = ''
 for i in str_element:
     if i not in str1:
         str1 += i
+
+# Если порядок не важен можно сделать так:
+uniq_char_str = ''.join(str_element)
+
+assert set(str1) == set(uniq_char_str)
+
 
 #  8
 
@@ -115,12 +125,18 @@ for i in str_element:
         dict_str[i] = 1
     else:
         dict_str[i] += 1
+
 #  9
 """
     Удалить в строке все цифры.
 """
+result_string = str_element
 for i in range(9):
-    str_element = str_element.replace(str(i), '')
+    result_string = result_string.replace(str(i), '')
+
+char_only = [ch for ch in str_element if ch.isalpha()]
+
+assert result_string == char_only, 'The solution is wrong'
 
 #  10
 
