@@ -186,9 +186,13 @@ vm2 = vm1.__class__('vm2', 2)
 class Path(object):
 
     prefix = 'tnx'
+    @classmethod
+    def cwd2(cls):
+        pass
 
     @classmethod
     def cwd(cls):
+        cls.cwd2()
         return os.path.curdir
 
     @staticmethod
@@ -206,10 +210,14 @@ prefix_path = Path.append(Path(), path)
 
 
 # ---------------------------------------------------------------------------
-class Magic(object):
+# more magic
+class Magic(BaseObject):
+    x = 1
+    def __len__(self):
+        return 1
 
     def __getattribute__(self, name):
-        return super(Magic, self).__getattribute__(name)
+        return self.x  # super(Magic, self).__getattribute__(name)
 
     def __getattr__(self, item):
         """Invoked if the attribute wasn't found the usual ways. Eg Magic.x"""
@@ -268,7 +276,7 @@ class SomeObject(object):
     var = None
 
 so_instance = SomeObject()
-so_instance.__dict__  #
+so_instance.__dict__  # {}
 SomeObject.__dict__  # {'var': None, '__dict__': <attribute '__dict__' of 'SomeObject' objects>, '__module__': '__main__', '__weakref__': <attribute '__weakref__' of 'SomeObject' objects>, '__doc__': None}
 
 so_instance.var = 'set value'
@@ -297,10 +305,10 @@ c.__dict__  # {'_x': 1}
 
 class StateMixin(object):
     _state = None  # current VM state
-
+    STOPPED = 0
     # all available states
     __states = {
-        'STOPPED': 0,
+        'STOPPED': STOPPED,
         'RUN': 1,
         'PAUSED': 2,
     }
@@ -331,6 +339,7 @@ class A(object):
 def class_creator():
     class A(object):
         pass
+
     return A
 
 
@@ -381,4 +390,26 @@ def func(x, y):
 
 
 timer(func)(1, 2)  # # Время выполнения функции: 0.0004
+
+
+def dec(logfile):
+    def wrapper1(fn):
+        def wrapper(*args, **kwargs):
+            print 'Openned'
+            res = fn(*args, **kwargs)
+            print logfile, 'closed and writted'
+            return res
+        return wrapper
+    return wrapper1
+
+
+@dec("/tmp/main.log")
+def main(tmp):
+    print tmp
+
+
+@dec("/tmp/summator")
+def summator(tmp):
+    print tmp
+
 # ---------------------------------------------------------------------------

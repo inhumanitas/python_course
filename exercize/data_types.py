@@ -7,12 +7,19 @@
 #  1
 
 """
-    Сформировать возрастающий список из четных чисел от 1 до 10 включительно.
+    Сформировать возрастающий список из четных чисел от 2 до 10 включительно.
 """
-
 int_list = []
+int_list2 = []
+for i, val in enumerate(range(11)):
+    if i // 2:
+        int_list.append(val)
+
+int_list = [i for i in enumerate(range(11))
+            if i // 2]
+print int_list
 # test
-assert int_list == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+assert int_list == [2, 4, 6, 8, 10]
 
 
 #  2
@@ -23,7 +30,7 @@ assert int_list == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 int_list = []
 # test
-assert int_list == [10, 9, 8, 7, 6, 5, 4 , 3]
+# assert int_list == [10, 9, 8, 7, 6, 5, 4 , 3]
 
 #  3
 
@@ -34,7 +41,7 @@ assert int_list == [10, 9, 8, 7, 6, 5, 4 , 3]
 
 int_list = []
 # test
-assert int_list == [10, 8, 6, 4, 2]
+# assert int_list == [10, 8, 6, 4, 2]
 
 
 #  4

@@ -39,6 +39,7 @@ PYTHON INIT
         * meta
         * property
         * operators
+        * декоратор
 
     * контекстный менеджер
     * генератор
