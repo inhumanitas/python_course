@@ -367,8 +367,11 @@ a_instance = AA()
 # decorators
 
 import time
+import functools
+
 
 def timer(func):
+    @functools.wraps(func)
     def tmp(*args, **kwargs):
         t = time.time()
         res = func(*args, **kwargs)
