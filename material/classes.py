@@ -389,6 +389,12 @@ dec_func(1, 2)  # Время выполнения функции: 0.0004
 
 
 def func(x, y):
+    """
+
+    :param x:
+    :param y:
+    :return:
+    """
     return x + y
 
 

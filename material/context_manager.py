@@ -1,11 +1,22 @@
 # coding: utf-8
 
-fh = open('test_file_path.txt', 'w')
-fh.write('test string')
+"""
+ Context manager
+"""
+
+fh = open('test_file_path.txt', 'a')
+# fh.write('test string')
+# fh.writelines(['test string'])
+print fh.readlines()  # -> ['', '']
+fh.close()
+
 
 with open('test_file_path.txt', 'r') as fh:
     lines = fh.readlines()
     print lines
+
+
+
 
 
 class Hypervisor(object):
@@ -54,11 +65,11 @@ class LockNode(object):
         self.hypervisor = hypervisor
 
     def __enter__(self):
-        self.hypervisor.lock()
+        return self.hypervisor.lock()
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.hypervisor.unlock()
-        # return True
+        return True
 
 
 with LockNode(hyp1):

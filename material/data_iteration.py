@@ -11,6 +11,12 @@ lst = range(5)
 lst_iterator = xrange(5)
 print lst, lst_iterator
 
+for el in lst_iterator:
+    print el
+
+for el in lst_iterator:
+    print el
+
 
 class SimpleIterator(object):
     __curitem = 0
@@ -21,6 +27,7 @@ class SimpleIterator(object):
     def next(self):
         self.__curitem += 1
         if self.__curitem > 5:
+            self.__curitem = 0
             raise StopIteration()
 
         return self.__curitem
@@ -29,6 +36,17 @@ class SimpleIterator(object):
 for i in SimpleIterator():
     print 'i = ', i
 
+
+iterable = SimpleIterator()
+for i in iterable:
+    print 'i = ', i,
+
+print
+
+for i in iterable:
+    print 'i = ', i,
+
+print '-----------------'
 
 class DataHandler(object):
     def __init__(self, iterable):
