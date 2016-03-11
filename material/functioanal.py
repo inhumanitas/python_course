@@ -1,7 +1,8 @@
+# coding: utf-8
 
 iterable = [0, 1, 2, 3, 4]
-print 'all', not all(iterable)
-print 'any',  any(iterable)
+print 'all', all(iterable)
+print 'any', any(iterable)
 
 bool(iterable)
 if not iterable:
@@ -11,6 +12,7 @@ if not iterable:
 def summ(item):
     return item+1
 
+print map(summ, iterable)
 print map(summ, iterable)
 
 print any(map(lambda x: x > 1, iterable))
@@ -36,11 +38,13 @@ assert sum(lst) == reduce(lambda x, y: x + y, lst)
 assert all(lst) == reduce(lambda x, y: x and y, lst)  # all
 assert any(lst) == reduce(lambda x, y: x or y, lst)  # any
 
-# assert max(lst) == reduce(lambda x, y: x, lst)  # max
+# assert max(lst) == reduce(lambda x, y: x if x > y else y, lst)  # max
+# assert min(lst) == reduce(lambda x, y: x < y, lst)  # max
+
 
 reduce(max, lst)
 
-reduce(lambda x, y: x + [y], 'abc', [])
+reduce(lambda x, y: x + [y], 'abc', []) # ['a', 'b', 'c']
 
 
 # ------------------------------------------------------------------------
@@ -115,7 +119,7 @@ assert zip('abcsdfsadfasdf', [1, 2, 3]) == [('a', 1), ('b', 2), ('c', 3)]
 
 import itertools
 
-slice = itertools.islice(xrange(100000000000), 10000, 10200, 50)
+slice = itertools.islice(xrange(100000), 10000, 10200, 50)
 
 print slice # <itertools.islice object at 0x7f54a3f3dba8>
 
@@ -147,7 +151,7 @@ assert l == [10000, 10050, 10100, 10150]
 # list(itertools.takewhile(func, [4, 5, 6, 0, 7, 2, 3]))
 # [4, 5, 6]
 
-# cycle
+# itertools.cycle
 
 # ifilter
 # imap
@@ -167,5 +171,13 @@ p = Point(11, y=22)
 p[0] + p[1]
 
 # collections.defaultdict
-# collections.Ordereddict
+# collections.OrderedDict
 
+
+# import pdb; pdb.set_trace()
+#
+# n
+# l 181, 190
+# s
+# b 120
+# exit()
