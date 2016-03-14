@@ -63,7 +63,7 @@ PYTHON INIT
 #. debugger
 
 #. Окружение
-    * pypi
+    * pypi - the Python Package Index
     * pip
     * venv
 
