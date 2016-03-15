@@ -1,8 +1,13 @@
 # coding: utf-8
 
-import re
+# import re
 import json
 import requests
+
+var = [1, 'str', {'key1': 'value1'}]
+var_json = json.dumps(var)  # -> "[1, 'str', {'key1': 'value1'}]"
+var_ = json.loads(var_json)  # -> [1, 'str', {'key1': 'value1'}]
+
 
 # ---------------------------------------------------------------------------
 # make first request
@@ -97,7 +102,43 @@ nova_client = NovaClient(
     bypass_url=compute_url)
 
 servers = nova_client.servers.list()
+servers = nova_client.hypervisors.list()
 assert servers
 
 server_name = servers[0].name
 print server_name
+
+'''
+  284  su -c 'easy_install pip'
+  287  pip install requests
+  288  pip freeze
+  289  pip list
+  290  pip freeze
+  291  ls ~/work/env/cc/lib/python2.7/site-packages/
+  292  ls ~/work/env/cc/lib/python2.7/site-packages/tionix_cloud_control-0.3.2.dev32-py2.7.egg-info/
+  293  ll ~/work/env/cc/lib/python2.7/site-packages/tionix_cloud_control-0.3.2.dev32-py2.7.egg-info/
+  294  ls -la ~/work/env/cc/lib/python2.7/site-packages/tionix_cloud_control-0.3.2.dev32-py2.7.egg-info/
+  295  less ~/work/env/cc/lib/python2.7/site-packages/tionix_cloud_control-0.3.2.dev32-py2.7.egg-info/requires.txt
+  296  less ~/work/env/cc/lib/python2.7/site-packages/tionix_cloud_control-0.3.2.dev32-py2.7.egg-info/entry_points.txt
+  297  ls -la ~/work/env/cc/lib/python2.7/site-packages/tionix_cloud_control/
+  298  ipython
+  299  pip install virtualenv
+  создание окружения
+  300  virtualenv test_env
+  301  cd test_env/
+  активируем
+  303  source test_env/bin/activate
+  установка пакета в окружение
+  304  pip install requests
+  установка удобной утилиты
+  pip install virtualenvwrapper
+
+  настройка virtualenvwrapper
+
+  создание окружения
+  305  mkvirtualenv test
+  отключение окружения
+  306  deactivate
+  переключение между существующими
+  307  workon liberty
+'''

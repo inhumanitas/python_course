@@ -84,6 +84,8 @@ def my_named_tuple(name, *args, **kwargs):
 custom_namedtuple = my_named_tuple  # Change type here
 
 Point = custom_namedtuple('Point', ['x', 'y'])
+Line = custom_namedtuple('Point', ['x', 'y'])
+
 assert Point.__doc__ == 'Point(x, y)'
 Point = custom_namedtuple('Point', 'x y')
 assert Point.__doc__ == 'Point(x, y)'
@@ -91,6 +93,7 @@ assert Point.__doc__ == 'Point(x, y)'
 
 x, y = 11, 22
 p = Point(x, y=y)
+p = Line(x, y=y)
 assert p[0] + p[1] == x + y
 assert p.x + p.y == x + y
 
